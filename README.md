@@ -1,7 +1,7 @@
 # teenygraph
 A teeny tiny program that plot function graphs using _PyGame_.
 
-#* Examples
+# Examples
 Some examples are avaliable in the file _examples.py_.
 
 ## How to use
