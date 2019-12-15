@@ -22,6 +22,8 @@ def plot(Fx,rgb):
 	pygame.display.flip()
 
 def init(x,y,f,rgb):
+	# x -Window height # y -Window width
+	# f -Size factor
 	pygame.init()
 	global screen; global Sx; global Sy; global Factor
 	screen = pygame.display.set_mode([x,y])
