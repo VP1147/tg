@@ -1,9 +1,6 @@
 # teenygraph
 A teeny tiny program that plot function graphs using _PyGame_.
 
-# Examples
-Some examples are avaliable in the file _examples.py_.
-
 ## How to use
 First, you'll need to import _teenygraph.py_ file.
 
@@ -33,4 +30,5 @@ Here, we have a modular function, _f(x) = |x²+5x-30|_. To plot that function:
 ```
 Were (0,0,255) is the RGB for blue.
 
-
+## Examples
+Some examples are avaliable in the _examples.py_ file.
