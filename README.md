@@ -16,9 +16,9 @@ pygame 1.9.4.post1
 Hello from the pygame community. https://www.pygame.org/contribute.html
 ```
 
-Now, call the *Start* function
+Now, call the *init* function
 ```
->>> tg.Start(700,700,(255,255,255))
+>>> tg.init(700,700,0.1,(255,255,255))
 ```
 A 700x700 PyGame window will be created, with a blank graph. To plot a function, let's define one first:
 ```
@@ -29,8 +29,8 @@ A 700x700 PyGame window will be created, with a blank graph. To plot a function,
 ```
 Here, we have a modular function, _f(x) = |x²+5x-30|_. To plot that function:
 ```
->>> tg.DrawGraph(Mod,700,700,0.1,(0,0,255))
+>>> tg.plot(Mod,(0,0,255))
 ```
-Were (0,0,255) is the RGB for blue, and 0.1 is the Zoom factor.
+Were (0,0,255) is the RGB for blue.
 
 
