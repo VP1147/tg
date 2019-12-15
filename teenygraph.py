@@ -5,26 +5,30 @@ import pygame
 
 clock = pygame.time.Clock()
 
-def DrawGraph(Fx,SX,SY,Factor,rgb):
-	Count = ((SX/2)*-1)*Factor
-	for i in range (1,SX):
+def plot(Fx,rgb):
+	Count = ((Sx/2)*-1)*Factor
+	for i in range (1,Sx):
 		try:
-			if SX*-10 < (SX/2)-Fx(Count) < SX*10:
+			if Sx*-10 < (Sx/2)-Fx(Count) < Sx*10:
 				print(Fx(Count))
-				Actual = [i, ((SX/2)-Fx(Count))] # Line start
-				Next = [i+1, (((SX+1)/2)-Fx(Count+(1*Factor)))] # Line end
+				Actual = [i, ((Sx/2)-Fx(Count))] # Line start
+				Next = [(i+1), (((Sx+1)/2)-Fx(Count+(1*Factor)))] # Line end
 				pygame.draw.aaline(screen,rgb,Actual,Next,10)
 			else: pass
 		except ValueError: pass
 		except OverflowError: pass
+		except ZeroDivisionError: pass
 		Count += Factor
 	pygame.display.flip()
 
-def Start(SX,SY,rgb):
+def init(x,y,f,rgb):
 	pygame.init()
-	global screen
-	screen = pygame.display.set_mode([SX,SY])
-	pygame.draw.aaline(screen,rgb,(SX/2,1),(SX/2,SX))
-	pygame.draw.aaline(screen,rgb,(SY,SY/2),(1,SY/2),1)
+	global screen; global Sx; global Sy; global Factor
+	screen = pygame.display.set_mode([x,y])
+	Sx = x
+	Sy = y
+	Factor = f
+	pygame.draw.aaline(screen,rgb,(x/2,1),(x/2,x))
+	pygame.draw.aaline(screen,rgb,(y,y/2),(1,y/2),1)
 	pygame.display.flip()
 

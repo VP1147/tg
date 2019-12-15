@@ -10,7 +10,7 @@ y = 700 # Window width
 f = 0.1 # Zoom factor
 
 def Log(x):
-	return math.sqrt(x)
+	return math.log(x,10)
 
 def Arit(x):
 	return (2*x)
@@ -21,11 +21,16 @@ def Sin(x):
 def Exp(x):
 	return (2**x)
 
-tg.Start(x,y,(255,255,255))
+def Mod(x):
+	return math.sqrt(x**2)
 
-#tg.DrawGraph(Log,x,y,f,(255,0,0))
-#tg.DrawGraph(Arit,x,y,f,(0,255,0))
-#tg.DrawGraph(Exp,x,y,f,(0,255,255))
-tg.DrawGraph(Sin,x,y,f,(0,255,100))
+
+tg.init(x,y,f,(255,255,255))
+
+tg.plot(Log,(255,0,0))
+tg.plot(Arit,(0,255,0))
+tg.plot(Exp,(0,255,255))
+tg.plot(Sin,(0,255,100))
+tg.plot(Mod,(255,255,0))
 getch()
 
