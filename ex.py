@@ -1,7 +1,7 @@
 import pygame, math
 from getch import getch
 
-import teenygraph as tg
+import tg
 
 clock = pygame.time.Clock()
 
