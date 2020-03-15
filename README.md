@@ -27,7 +27,7 @@ A 700x700 PyGame window will be created, with a blank graph. To plot a function,
 _Note: The function have to receive a integer (x) and return a float._
 Here, we have a modular function, _f(x) = |x²+5x-30|_. To plot that function:
 ```
->>> tg.plot(Mod,r)
+>>> tg.plot(Mod)
 ```
 
 ## Examples
