@@ -1,37 +1,37 @@
-# teenygraph
-A teeny tiny program that plot function graphs using _PyGame_.
+# Teenygraph
+A teeny tiny code that plot Python functions.
 
 ## How to use
-First, you'll need to import _teenygraph.py_ file.
+Import _tg.py_.
 
 ```
-Python 3.7.5 (default, Oct 27 2019, 15:43:29) 
-[GCC 9.2.1 20191022] on linux
+vp1147@debian-ideapad:~/Documentos/GitHub/teenygraph$ python3
+Python 3.7.3 (default, Dec 20 2019, 18:57:59) 
+[GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import tg
-pygame 1.9.4.post1
-Hello from the pygame community. https://www.pygame.org/contribute.html
+>>> 
 ```
 
-Now, call the *init* function
+Call the *init* function
 ```
->>> tg.init(700,0.1)
+>>> tg.init(640,0.1)
 ```
-A 700x700 PyGame window will be created, with a blank graph. To plot a function, let's define one first:
+A 4:3 window will be created. To plot a function, let's define one first:
 ```
 >>> def Sin(x):
-...     return return math.sin(x)
+...     return math.sin(x)
 ...
 >>>
 ```
 _Note: The function have to receive a integer (x) and return a float._
-Here, we have a senoid funcion. To plot that function:
+To plot this *wonderful* senoid function function:
 ```
 >>> tg.plot(Sin)
 ```
 
 ## Examples
-Some examples are avaliable in the _examples.py_ file.
+Some examples are avaliable in the _ex.py_ file.
 ```
 $ python3 ex.py
 ```
