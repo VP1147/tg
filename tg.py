@@ -26,12 +26,31 @@ def init(s,f): 		# s - Window size # f - x/y factor
 	global Win; global Sx; global Sy; global Factor; 	# Def global variables
 	Sx, Sy = s, int(s*(3/4))							# XY axis
 	Win = gfx.GraphWin("Teenygraph", Sx, Sy) 			# Starting 4/3 window
-	Factor = f
-	grid()											# Draw graph grid
+	Factor = f											
+	grid(100)											# Draw grid
+	axis()												# Draw axis
 
-def grid():	# m - Def the distance between 2 markers
+def axis():	
 	l1 = gfx.Line(gfx.Point(Sx/2,0),gfx.Point(Sx/2,Sx)); l1.setFill('white'); l1.draw(Win)
 	l2 = gfx.Line(gfx.Point(Sx,Sy/2),gfx.Point(1,Sy/2)); l2.setFill('white'); l2.draw(Win)
+
+def grid(m): # m - Def the distance between 2 lines
+	e = 0
+	for i in range(0, int((Sx/2)/m)+1):
+		l = gfx.Line(gfx.Point(e+(Sx/2),0),gfx.Point(e+(Sx/2),Sy))
+		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		l = gfx.Line(gfx.Point((Sx/2)-e,0),gfx.Point(Sx/2-e,Sy))
+		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		e+=m
+	e = 0
+	for i in range(0, int((Sy/2)/(m*Factor))+1):
+		l = gfx.Line(gfx.Point(0,(e*Factor)+(Sy/2)),gfx.Point(Sx,(e*Factor)+(Sy/2)))
+		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		l = gfx.Line(gfx.Point(0,(Sy/2)-(e*Factor)),gfx.Point(Sx,(Sy/2)-(e*Factor)))
+		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		e+=m
+		
+
 
 # def clear():
 # 	Sgraph.fill((0,0,0))

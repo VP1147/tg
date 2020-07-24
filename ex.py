@@ -3,8 +3,8 @@ from getch import getch
 
 import tg
 
-x = 700 	# Window size
-f = 0.5 	# Zoom factor
+x = 700
+f = 1
 
 
 def Log(x):
@@ -24,9 +24,9 @@ def Mod(x):
 
 tg.init(x,f)
 
-tg.plot(Log)
+#tg.plot(Log)
 tg.plot(Arit)
-tg.plot(Exp)
-tg.plot(Mod)
+#tg.plot(Exp)
+#tg.plot(Mod)
 
 getch()
