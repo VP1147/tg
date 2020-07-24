@@ -25,7 +25,7 @@ A 4:3 window will be created. To plot a function, let's define one first:
 >>>
 ```
 _Note: The function have to receive a integer (x) and return a float._
-To plot this *wonderful* senoid function function:
+To plot this *wonderful* sine wave function function:
 ```
 >>> tg.plot(Sin)
 ```

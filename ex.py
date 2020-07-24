@@ -24,9 +24,10 @@ def Mod(x):
 
 tg.init(x,f)
 
-#tg.plot(Log)
-tg.plot(Arit)
-#tg.plot(Exp)
-#tg.plot(Mod)
+tg.plot(Sin)	# Sinusoid
+tg.plot(Log)	# Logarithmic
+tg.plot(Arit)	# Arithmetic
+tg.plot(Exp)	# Exponential
+tg.plot(Mod)	# Modular
 
 getch()
