@@ -1,6 +1,7 @@
+![Screenshot](screenshot.png)
+
 # Teenygraph
 A teeny tiny code that plot Python functions.
-![Screenshot](screenshot.png)
 
 ## How to use
 Import _tg.py_.
