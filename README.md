@@ -1,3 +1,5 @@
+![Screenshot](screenshot.png)
+
 # Teenygraph
 A teeny tiny code that plot Python functions.
 
