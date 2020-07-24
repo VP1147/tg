@@ -1,53 +1,38 @@
 # --- TeenyGraph (PyGraph) --- By Vinícius Pavão - VP1147 ---
 # --- November 2019
 
-import pygame
+import graphics as gfx
 from random import randint
 
-clock = pygame.time.Clock()
-
-aa = True # Change to False if executed in low hardware. Default: True 
-
 def plot(Fx):
-	rgb = (randint(0,255),randint(0,255),(randint(0,255)))
+	r,g,b = randint(0,255),randint(0,255),randint(0,255)
 	Count = ((Sx/2)*-1)*Factor
 	for i in range (1,Sx):
 		try:
-			if Sx*-10 < (Sx/2)-Fx(Count) < Sx*10:
-				print(Fx(Count))
-				Actual = [i, ((Sx/2)-Fx(Count))] # Line start
-				Next = [(i+1), (((Sx+1)/2)-Fx(Count+(1*Factor)))] # Line end
-				if aa == True: pygame.draw.aaline(Sgraph,rgb,Actual,Next,10)
-				else: pygame.draw.line(Sgraph,rgb,Actual,Next)
+			if Sx*-1 < (Sx/2)-Fx(Count) < Sx:
+				Actual = Fx(Count)
+				Next = Fx(Count+(1*Factor))
+				ActualCord = gfx.Point(i, ((Sy/2)-Actual))		# Starting point
+				NextCord = gfx.Point((i+1), (((Sy+1)/2)-Next)) 	# Ending point
+				line = gfx.Line(ActualCord,NextCord); 
+				line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)
 			else: pass
 		except ValueError: pass
 		except OverflowError: pass
 		except ZeroDivisionError: pass
 		Count += Factor
-	pygame.display.flip()
 
-def init(size,factor): # x -Window height # y -Window width # f -Size factor
-	pygame.init()
-	global Sgraph; global Sgrid; # Pygame layers
-	global Sx; global Sy; global Factor; # Global variables
-	pygame.display.set_caption('TeenyGraph')
-	Sgraph = pygame.display.set_mode([size,size])
-	Sgrid = pygame.display.set_mode([size,size])
-	Sx,Sy = size,size
-	Factor = factor
-	grid()
-	pygame.display.flip()
+def init(s,f): 		# s - Window size # f - x/y factor
+	global Win; global Sx; global Sy; global Factor; 	# Def global variables
+	Sx, Sy = s, int(s*(3/4))							# XY axis
+	Win = gfx.GraphWin("Teenygraph", Sx, Sy) 			# Starting 4/3 window
+	Factor = f
+	grid()											# Draw graph grid
 
-def grid():
-	if aa == True:
-		pygame.draw.aaline(Sgrid,(255,255,255),(Sx/2,1),(Sx/2,Sx),10)
-		pygame.draw.aaline(Sgrid,(255,255,255),(Sy,Sy/2),(1,Sy/2),10)
-	else:
-		pygame.draw.line(Sgrid,(255,255,255),(Sx/2,1),(Sx/2,Sx))
-		pygame.draw.line(Sgrid,(255,255,255),(Sy,Sy/2),(1,Sy/2))
-	pygame.display.flip()
+def grid():	# m - Def the distance between 2 markers
+	l1 = gfx.Line(gfx.Point(Sx/2,0),gfx.Point(Sx/2,Sx)); l1.setFill('white'); l1.draw(Win)
+	l2 = gfx.Line(gfx.Point(Sx,Sy/2),gfx.Point(1,Sy/2)); l2.setFill('white'); l2.draw(Win)
 
-def clear():
-	Sgraph.fill((0,0,0))
-	grid()
-	#pygame.display.flip()
+# def clear():
+# 	Sgraph.fill((0,0,0))
+# 	#pygame.display.flip()

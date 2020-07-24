@@ -19,19 +19,19 @@ Now, call the *init* function
 ```
 A 700x700 PyGame window will be created, with a blank graph. To plot a function, let's define one first:
 ```
->>> def Mod(x):
-...     return math.sqrt((x**2+5*x-30)**2)
+>>> def Sin(x):
+...     return return math.sin(x)
 ...
 >>>
 ```
 _Note: The function have to receive a integer (x) and return a float._
-Here, we have a modular function, _f(x) = |x²+5x-30|_. To plot that function:
+Here, we have a senoid funcion. To plot that function:
 ```
->>> tg.plot(Mod)
+>>> tg.plot(Sin)
 ```
 
 ## Examples
 Some examples are avaliable in the _examples.py_ file.
 ```
-$ python3 examples.py
+$ python3 ex.py
 ```

@@ -1,35 +1,32 @@
-import pygame, math
+import math
 from getch import getch
 
 import tg
 
-clock = pygame.time.Clock()
+x = 700 	# Window size
+f = 0.5 	# Zoom factor
 
-x = 700 # Window heigh
-y = 700 # Window width
-f = 0.5 # Zoom factor
 
-def Log(x): # Função logarítmica 
+def Log(x):
 	return math.log(x,10)
 
-def Arit(x): # Função aritmética
-	return (2*x)
+def Arit(x):
+	return 2*x
 
-def Sin(x): # Função senoidal
-	return math.sin(x)*20
+def Sin(x):
+	return math.sin(x)
 
 def Exp(x):
-	return (2**x)
+	return 2**x
 
 def Mod(x):
 	return math.sqrt(x**2)
 
-tg.init(x,y,f)
+tg.init(x,f)
 
-tg.plot(Log,(255,0,0))
-tg.plot(Arit,(0,255,0))
-tg.plot(Exp,(0,255,255))
-tg.plot(Sin,(0,255,100))
-tg.plot(Mod,(255,255,0))
+tg.plot(Log)
+tg.plot(Arit)
+tg.plot(Exp)
+tg.plot(Mod)
 
 getch()
