@@ -17,16 +17,16 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 Call the *init* function
 ```
->>> tg.init(640,0.1)
+>>> tg.init(1024,0.01,2)
 ```
-A 4:3 window will be created. To plot a function, let's define one first:
+A window will be created. To plot a function, let's define one first:
 ```
 >>> def Sin(x):
 ...     return math.sin(x)
 ...
 >>>
 ```
-_Note: The function have to receive a integer (x) and return a float._
+_Note: The function have to receive [x] and return [sin(x)] a float._
 To plot this *wonderful* sine wave function function:
 ```
 >>> tg.plot(Sin)
