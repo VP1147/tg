@@ -1,8 +1,9 @@
-![Screenshot](screenshot.png)
+![Arithmetic function](arit.png)
 
 # Teenygraph
 A teeny tiny code that plot Python functions.
 
+![Multiple functions](multiple.png)
 ## How to use
 Import _tg.py_.
 
@@ -31,7 +32,7 @@ To plot this *wonderful* sine wave function function:
 ```
 >>> tg.plot(Sin)
 ```
-
+![Sinusoid function](sin.png)
 ## Examples
 Some examples are avaliable in the _ex.py_ file.
 ```
