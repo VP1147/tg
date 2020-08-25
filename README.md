@@ -3,7 +3,7 @@
 # Teenygraph
 A teeny tiny code that plot Python functions.
 
-![Multiple functions](multiple.png)
+![Multiple functions](multiple2.png)
 ## How to use
 Import _tg.py_.
 
