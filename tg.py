@@ -4,9 +4,14 @@
 import graphics as gfx
 from random import randint
 
+# Global variables
+global Mkrs
+Mkrs = 0
+# Mkrs = [20, 90, 140]
+
 def plot(Fx):
 	r,g,b = randint(0,255),randint(0,255),randint(0,255)
-	Count = ((Sx/2)*-1)*Factor
+	Count = ((Sx/2)*-1)*Factor; mc = 0
 	for i in range (1,Sx):
 		try:
 			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:
@@ -16,10 +21,16 @@ def plot(Fx):
 				NextCord = gfx.Point((i+1), (((Sy+1)/2)-Next)) 	# Ending point
 				line = gfx.Line(ActualCord,NextCord); 
 				line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)
+				if Mkrs != 0 and Count == Mkrs[mc]:
+					label = gfx.Text(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
+					label.setFill(gfx.color_rgb(r,g,b)); label.draw(Win)
+					#print("Marker at x: "+str(Mkrs[mc])+" y: "+str(Actual))
+					mc+=1
 			else: pass
-		except ValueError: pass
-		except OverflowError: pass
-		except ZeroDivisionError: pass
+		except ValueError: 			pass
+		except OverflowError: 		pass
+		except ZeroDivisionError: 	pass
+		except IndexError:			pass
 		Count += Factor
 
 def init(s,f,g): 		# s - Window size # f - x/y factor
@@ -36,23 +47,23 @@ def axis():
 
 def grid(m): # m - Def the distance between 2 lines
 	e = 0
-	for i in range(0, int((Sx/2)/(m/Factor))+1):
+	for i in range(0, int((Sx)/(m/Factor))+1):
 		l = gfx.Line(gfx.Point((e/Factor)+(Sx/2),0),gfx.Point((e/Factor)+(Sx/2),Sy))
 		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
 		l = gfx.Line(gfx.Point((Sx/2)-(e/Factor),0),gfx.Point(Sx/2-(e/Factor),Sy))
 		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
-		e+=m
+		e+=m/2
 	e = 0
-	for i in range(0, int((Sy/2)/(m/Factor))+1):
+	for i in range(0, int((Sy)/(m/Factor))+1):
 		l = gfx.Line(gfx.Point(0,(e/Factor)+(Sy/2)),gfx.Point(Sx,(e/Factor)+(Sy/2)))
 		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
 		l = gfx.Line(gfx.Point(0,(Sy/2)-(e/Factor)),gfx.Point(Sx,(Sy/2)-(e/Factor)))
 		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
-		e+=m
+		e+=m/2
 		
 
 
 def clear():
-    for i in Win.items[:]:
-        i.undraw()
-    Win.update()
+	for i in Win.items[:]:
+		i.undraw()
+	Win.update()
