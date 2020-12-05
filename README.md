@@ -20,6 +20,7 @@ Call the **init** function
 ```
 >>> tg.init(1024,10,1)
 ```
+![Empty graph](empty_graph.png)
 A graph will be created with the following values:  
 **Size (Window):** 1024x768  
 **Size (X axis):** 10 (-5 to 5)  
