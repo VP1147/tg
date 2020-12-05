@@ -5,7 +5,7 @@ A teeny tiny code that plot Python functions.
 
 ![Multiple functions](multiple2.png)
 ## How to use
-Import _tg.py_.
+Import _tg.py_. For this example, you will also need _math_.
 
 ```
 vp1147@debian-ideapad:~/Documentos/GitHub/teenygraph$ python3
@@ -13,7 +13,7 @@ Python 3.7.3 (default, Dec 20 2019, 18:57:59)
 [GCC 8.3.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import tg
->>> 
+>>> import math
 ```
 
 Call the **init** function
