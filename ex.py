@@ -4,8 +4,8 @@ from getch import getch
 import tg
 
 x = 1024	# Window width
-f = 0.01	# Zoom factor (Lower value -> more zoom)
-g = 2		# Distance between grid lines
+xs = 10
+g = 1		# Distance between grid lines
 
 
 def Log(x):
@@ -26,7 +26,7 @@ def Mod(x):
 def Quad(x):
 	return x**2
 
-tg.init(x,f,g)
+tg.init(x,xs,g)
 
 #tg.plot(Quad)	# Quadratic
 tg.plot(Sin)	# Sinusoid

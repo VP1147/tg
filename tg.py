@@ -4,10 +4,17 @@
 import graphics as gfx
 from random import randint
 
+# Define global colors
+global Color1 # Axis color
+global Color2 # Grid color
+
+# Setting colors
+Color1 = (255,255,255)
+Color2 = (40,40,40)
+
 # Global variables
 global Mkrs
 Mkrs = 0
-# Mkrs = [20, 90, 140]
 
 def plot(Fx):
 	r,g,b = randint(0,255),randint(0,255),randint(0,255)
@@ -24,7 +31,6 @@ def plot(Fx):
 				if Mkrs != 0 and Count == Mkrs[mc]:
 					label = gfx.Text(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
 					label.setFill(gfx.color_rgb(r,g,b)); label.draw(Win)
-					#print("Marker at x: "+str(Mkrs[mc])+" y: "+str(Actual))
 					mc+=1
 			else: pass
 		except ValueError: 			pass
@@ -33,32 +39,39 @@ def plot(Fx):
 		except IndexError:			pass
 		Count += Factor
 
-def init(s,f,g): 		# s - Window size # f - x/y factor
+def init(s,xs,g): 		# s - Window size # xs - x axis size
 	global Win; global Sx; global Sy; global Factor; 	# Def global variables
-	Sx, Sy = s, int(s*(3/4))							# XY axis
-	Win = gfx.GraphWin("Teenygraph", Sx, Sy) 			# Starting 4/3 window
-	Factor = f											
-	grid(g)												# Draw grid
-	axis()												# Draw axis
+	global x; global y
+	x, y = s, int(s*(3/4))								# XY max value ( x: 0,s ; y: 0,s*(3/4) )
+	Win = gfx.GraphWin("Teenygraph", x, y) 				# Show window
+	Sx, Sy = x,y #(x-200,y-200)
+	Factor = xs/x 										# Ratio between graphic and window size			
+	grid(g*2)											# Draw grid
+	axis(x,y)											# Draw axis
 
-def axis():	
-	l1 = gfx.Line(gfx.Point(Sx/2,0),gfx.Point(Sx/2,Sx)); l1.setFill('white'); l1.draw(Win)
-	l2 = gfx.Line(gfx.Point(Sx,Sy/2),gfx.Point(1,Sy/2)); l2.setFill('white'); l2.draw(Win)
+def axis(x,y):	
+	l1 = gfx.Line(gfx.Point(x/2,0),gfx.Point(x/2,x)); 
+	l1.setFill(gfx.color_rgb(Color1[0],Color1[1],Color1[2])); l1.draw(Win)
+
+	l2 = gfx.Line(gfx.Point(x,Sy/2),gfx.Point(1,y/2)); 
+	l2.setFill(gfx.color_rgb(Color1[0],Color1[1],Color1[2])); l2.draw(Win)
 
 def grid(m): # m - Def the distance between 2 lines
 	e = 0
 	for i in range(0, int((Sx)/(m/Factor))+1):
 		l = gfx.Line(gfx.Point((e/Factor)+(Sx/2),0),gfx.Point((e/Factor)+(Sx/2),Sy))
-		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		l.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l.draw(Win)
+
 		l = gfx.Line(gfx.Point((Sx/2)-(e/Factor),0),gfx.Point(Sx/2-(e/Factor),Sy))
-		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		l.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l.draw(Win)
 		e+=m/2
 	e = 0
 	for i in range(0, int((Sy)/(m/Factor))+1):
 		l = gfx.Line(gfx.Point(0,(e/Factor)+(Sy/2)),gfx.Point(Sx,(e/Factor)+(Sy/2)))
-		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		l.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l.draw(Win)
+
 		l = gfx.Line(gfx.Point(0,(Sy/2)-(e/Factor)),gfx.Point(Sx,(Sy/2)-(e/Factor)))
-		l.setFill(gfx.color_rgb(40,40,40)); l.draw(Win)
+		l.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l.draw(Win)
 		e+=m/2
 		
 
