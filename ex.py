@@ -4,8 +4,11 @@ from getch import getch
 import tg
 
 x = 1024	# Window width
-xs = 10
+xs = 10		# Graph width
 g = 1		# Distance between grid lines
+
+tg.theme("paper.json")
+tg.Mkrs = [-3,5]
 
 ### Math functions
 def Log(x): # f(x) = log x
@@ -25,7 +28,6 @@ def Mod(x): # f(x) = |x|
 
 def Quad(x): # f(x) = x²
 	return x**2
-###
 
 tg.init(x,xs,g)
 
