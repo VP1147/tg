@@ -14,16 +14,18 @@ global Mkrs
 Mkrs = 0
 
 def theme(file):
-	global Color1 	# Background Color
-	global Color2	# Axis Color
-	global Color3	# Grid Color
+	global Color1 	# 	Background Color
+	global Color2	# 	Axis Color
+	global Color3	# 	Grid Color
+	global Color4	#	Plot Color
 	theme_file = json.load(open(file))
 	Color1 = theme_file.get("Color1")
 	Color2 = theme_file.get("Color2")
 	Color3 = theme_file.get("Color3")
+	Color4 = theme_file.get("Color4")
 
 def plot(Fx):
-	r,g,b = randint(0,255),randint(0,255),randint(0,255)
+	r,g,b = Color4[0], Color4[1], Color4[2]
 	Count = ((Sx/2)*-1)*Factor; mc = 0
 	for i in range (1,Sx):
 		try:
@@ -48,11 +50,12 @@ def plot(Fx):
 
 def init(s,xs,g): 		# s - Window size # xs - x axis size
 	global Win; global Sx; global Sy; global Factor; 	# Def global variables
-	global x; global y
+	global x; global y; global G;
 	x, y = s, int(s*(3/4))								# XY max value ( x: 0,s ; y: 0,s*(3/4) )
 	Win = gfx.GraphWin("Teenygraph", x, y) 				# Show window
 	Sx, Sy = x,y #(x-200,y-200)
 	Factor = xs/x 										# Ratio between graphic and window size
+	G = g
 	Win.setBackground(gfx.color_rgb(Color1[0],Color1[1],Color1[2]))	
 	grid(g*2)											# Draw grid
 	axis(x,y)											# Draw axis
@@ -87,4 +90,6 @@ def grid(m): # m - Def the distance between 2 lines
 def clear():
 	for i in Win.items[:]:
 		i.undraw()
+	grid(G*2)
+	axis(x,y)
 	Win.update()

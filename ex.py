@@ -7,7 +7,7 @@ x = 1024	# Window width
 xs = 10		# Graph width
 g = 1		# Distance between grid lines
 
-tg.theme("paper.json")
+tg.theme("dark.json")
 tg.Mkrs = [-3,5]
 
 ### Math functions
