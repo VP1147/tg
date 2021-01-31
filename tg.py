@@ -5,10 +5,6 @@ import json
 import graphics as gfx
 from random import randint
 
-# Setting colors
-#Color1 = [255,255,255]
-#Color2 = [40,40,40]
-
 # Global variables
 global Mkrs
 Mkrs = 0
@@ -53,18 +49,18 @@ def init(s,xs,g): 		# s - Window size # xs - x axis size
 	global x; global y; global G;
 	x, y = s, int(s*(3/4))								# XY max value ( x: 0,s ; y: 0,s*(3/4) )
 	Win = gfx.GraphWin("Teenygraph", x, y) 				# Show window
-	Sx, Sy = x,y #(x-200,y-200)
+	Sx, Sy = x,y
 	Factor = xs/x 										# Ratio between graphic and window size
 	G = g
 	Win.setBackground(gfx.color_rgb(Color1[0],Color1[1],Color1[2]))	
 	grid(g*2)											# Draw grid
-	axis(x,y)											# Draw axis
+	axis(Sx,Sy)											# Draw axis
 
 def axis(x,y):	
 	l1 = gfx.Line(gfx.Point(x/2,0),gfx.Point(x/2,x)); 
 	l1.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l1.draw(Win)
 
-	l2 = gfx.Line(gfx.Point(x,Sy/2),gfx.Point(1,y/2)); 
+	l2 = gfx.Line(gfx.Point(x,y/2),gfx.Point(1,y/2)); 
 	l2.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l2.draw(Win)
 
 def grid(m): # m - Def the distance between 2 lines
@@ -84,8 +80,6 @@ def grid(m): # m - Def the distance between 2 lines
 		l = gfx.Line(gfx.Point(0,(Sy/2)-(e/Factor)),gfx.Point(Sx,(Sy/2)-(e/Factor)))
 		l.setFill(gfx.color_rgb(Color3[0],Color3[1],Color3[2])); l.draw(Win)
 		e+=m/2
-		
-
 
 def clear():
 	for i in Win.items[:]:
