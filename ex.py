@@ -1,16 +1,18 @@
 import math
+import random
 from getch import getch
 
 import tg
 
-x = 1024	# Window width
-xs = 10		# Graph width
-g = 1		# Distance between grid lines
+x = 1024		# Window width
+r = 5			# Window/Graph ratio(ratio = 10^r)
+xs = x/(2**r)	# Graph width
+g = 1			# Distance between grid lines
 
 tg.theme("dark.json")
-tg.Mkrs = [-3,5]
+tg.Mkrs = [-8, -4, 0, 1, 2, 3, 4]
 
-### Math functions
+
 def Log(x): # f(x) = log x
 	return math.log(x,10)
 
@@ -29,13 +31,13 @@ def Mod(x): # f(x) = |x|
 def Quad(x): # f(x) = x²
 	return x**2
 
-tg.init(x,xs,g)
+def Rand(x): # Random generator
+	return random.randint(0, 10)
 
-tg.plot(Quad)
-tg.plot(Sin)
-tg.plot(Log)
-tg.plot(Arit)
-tg.plot(Exp)
-tg.plot(Mod)
+
+tg.init(x,xs,g) # Call the init function
+				# with the given paramenters
+
+tg.plot(Exp)	# Plot a defined function
 
 getch()

@@ -7,7 +7,7 @@ from random import randint
 
 # Global variables
 global Mkrs
-Mkrs = 0
+#Mkrs = 0
 
 def theme(file):
 	global Color1 	# 	Background Color
@@ -33,7 +33,7 @@ def plot(Fx):
 				line = gfx.Line(ActualCord,NextCord); 
 				line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)
 				if Mkrs != 0 and Count == Mkrs[mc]:
-					print(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
+					print("Marker at "+"x: "+str(Count)+" y: "+str(Fx(Count)))
 					label = gfx.Text(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
 					label.setFill(gfx.color_rgb(r,g,b)); label.draw(Win)
 					mc+=1
