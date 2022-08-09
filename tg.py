@@ -5,10 +5,6 @@ import json
 import graphics as gfx
 from random import randint
 
-# Setting colors
-#Color1 = [255,255,255]
-#Color2 = [40,40,40]
-
 # Global variables
 global Mkrs
 Mkrs = 0
@@ -48,7 +44,7 @@ def plot(Fx):
 		except IndexError:			pass
 		Count += Factor
 
-def init(s,xs,g): 		# s - Window size # xs - x axis size
+def init(s,xs,g): 										# s - Window size # xs - x axis size
 	global Win; global Sx; global Sy; global Factor; 	# Def global variables
 	global x; global y; global G;
 	x, y = s, int(s*(3/4))								# XY max value ( x: 0,s ; y: 0,s*(3/4) )
@@ -60,7 +56,8 @@ def init(s,xs,g): 		# s - Window size # xs - x axis size
 	grid(g*2)											# Draw grid
 	axis(x,y)											# Draw axis
 
-def axis(x,y):	
+def axis(x,y):											# Function - Create a centered (x,y)
+														# axis for the graph
 	l1 = gfx.Line(gfx.Point(x/2,0),gfx.Point(x/2,x)); 
 	l1.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l1.draw(Win)
 
@@ -85,9 +82,10 @@ def grid(m): # m - Def the distance between 2 lines
 		l.setFill(gfx.color_rgb(Color3[0],Color3[1],Color3[2])); l.draw(Win)
 		e+=m/2
 
-def clear():
+def clear():											# Clear function
 	for i in Win.items[:]:
 		i.undraw()
-	grid(G*2)											# Draw grid
-	axis(x,y)											# Draw axis
-	Win.update()
+
+	grid(G*2)											# Draw grid /w interval G*2
+	axis(x,y)											# Draw axis (x,y)
+	Win.update()										# Send data to screen
