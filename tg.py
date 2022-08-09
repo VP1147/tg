@@ -5,15 +5,19 @@ import json
 import graphics as gfx
 from random import randint
 
+# Setting colors
+#Color1 = [255,255,255]
+#Color2 = [40,40,40]
+
 # Global variables
 global Mkrs
-#Mkrs = 0
+Mkrs = 0
 
 def theme(file):
-	global Color1 	# 	Background Color
-	global Color2	# 	Axis Color
-	global Color3	# 	Grid Color
-	global Color4	#	Plot Color
+	global Color1 	# Background Color
+	global Color2	# Axis Color
+	global Color3	# Grid Color
+	global Color4	# Plot Color
 	theme_file = json.load(open(file))
 	Color1 = theme_file.get("Color1")
 	Color2 = theme_file.get("Color2")
@@ -33,7 +37,7 @@ def plot(Fx):
 				line = gfx.Line(ActualCord,NextCord); 
 				line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)
 				if Mkrs != 0 and Count == Mkrs[mc]:
-					print("Marker at "+"x: "+str(Count)+" y: "+str(Fx(Count)))
+					print(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
 					label = gfx.Text(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
 					label.setFill(gfx.color_rgb(r,g,b)); label.draw(Win)
 					mc+=1
@@ -49,18 +53,18 @@ def init(s,xs,g): 		# s - Window size # xs - x axis size
 	global x; global y; global G;
 	x, y = s, int(s*(3/4))								# XY max value ( x: 0,s ; y: 0,s*(3/4) )
 	Win = gfx.GraphWin("Teenygraph", x, y) 				# Show window
-	Sx, Sy = x,y
+	Sx, Sy = x,y #(x-200,y-200)
 	Factor = xs/x 										# Ratio between graphic and window size
 	G = g
 	Win.setBackground(gfx.color_rgb(Color1[0],Color1[1],Color1[2]))	
 	grid(g*2)											# Draw grid
-	axis(Sx,Sy)											# Draw axis
+	axis(x,y)											# Draw axis
 
 def axis(x,y):	
 	l1 = gfx.Line(gfx.Point(x/2,0),gfx.Point(x/2,x)); 
 	l1.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l1.draw(Win)
 
-	l2 = gfx.Line(gfx.Point(x,y/2),gfx.Point(1,y/2)); 
+	l2 = gfx.Line(gfx.Point(x,Sy/2),gfx.Point(1,y/2)); 
 	l2.setFill(gfx.color_rgb(Color2[0],Color2[1],Color2[2])); l2.draw(Win)
 
 def grid(m): # m - Def the distance between 2 lines
@@ -84,6 +88,6 @@ def grid(m): # m - Def the distance between 2 lines
 def clear():
 	for i in Win.items[:]:
 		i.undraw()
-	grid(G*2)
-	axis(x,y)
+	grid(G*2)											# Draw grid
+	axis(x,y)											# Draw axis
 	Win.update()
