@@ -1,5 +1,5 @@
 # --- TeenyGraph (tg) --- By Vinícius Pavão - VP1147 --- #
-# --- November 2019 --- #
+# --- Released on November 2019 --- #
 
 import json
 import graphics as gfx
@@ -89,3 +89,10 @@ def clear():											# Clear function
 	grid(G*2)											# Draw grid /w interval G*2
 	axis(x,y)											# Draw axis (x,y)
 	Win.update()										# Send data to screen
+
+# Internal functions
+
+def Id(x):				# Identity function
+						# Useful for visualizing 
+						# inverse functions
+	return x

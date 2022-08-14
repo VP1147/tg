@@ -4,40 +4,51 @@ from getch import getch
 
 import tg
 
-x = 1024		# Window width
-r = 5			# Window/Graph ratio(ratio = 10^r)
-xs = x/(2**r)	# Graph width
-g = 1			# Distance between grid lines
+x = 1024								# Window width
+r = 5									# Window/Graph ratio(ratio = 10^r)
+xs = x/(2**r)							# Graph width
+g = 1									# Distance between grid lines
 
-tg.theme("dark.json")
-tg.Mkrs = [-8, -4, 0, 1, 2, 3, 4]
+tg.theme("dark.json")					# Select color scheme
+
+tg.Mkrs = [0]							# Choose markers (testing):
+										# Markers are defined by 
+										# points on the x axis
 
 
-def Log(x): # f(x) = log x
-	return math.log(x,10)
+# Example functions
 
-def Arit(x): # f(x) = 2x
+def Log(x): 				# f(x) = log2(x)
+	return math.log(x,2)
+
+def Arit(x): 				# f(x) = 2x
 	return 2*x
 
-def Sin(x): # f(x) = sin(x)
+def Sin(x): 				# f(x) = sin(x)
 	return math.sin(x)
 
-def Exp(x): # f(x) = 2^x
+def Exp(x): 				# f(x) = 2^x
 	return 2**x
 
-def Mod(x): # f(x) = |x|
+def Mod(x): 				# f(x) = |x|
 	return math.sqrt(x**2)
 
-def Quad(x): # f(x) = x²
+def Rad(x):
+	return math.sqrt(x)
+
+def Quad(x): 				# f(x) = x²
 	return x**2
 
-def Rand(x): # Random generator
+def Rand(x): 				# Random generator
 	return random.randint(0, 10)
 
 
-tg.init(x,xs,g) # Call the init function
-				# with the given paramenters
+tg.init(x,xs,g) 			# Call the init function
+							# with the given paramenters
 
-tg.plot(Exp)	# Plot a defined function
+tg.plot(tg.Id)				# Plot internal Identity function
 
-getch()
+tg.plot(Exp)				# Inverse functions
+tg.plot(Log)
+
+getch()						# Wait for keyboard event

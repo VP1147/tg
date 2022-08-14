@@ -4,7 +4,19 @@
 A teeny tiny code that plot Python functions.
 
 ![Multiple functions](multiple2.png)
-## How to use
+
+## Pre-requisites
+The required Python libraries are listed below:
+	- Random
+	- Json
+	- Graphics.py
+	- Getch
+Those can be installed with PIP, for example:
+```
+python3 -m pip install graphics.py getch
+```
+
+## Initializing
 Import _tg.py_. For this example, you will also need _math_.
 
 ```
@@ -36,10 +48,10 @@ So, the graph will read:
 **x:** x  
 **y:** math.sin(x)  
 
-Plot this **wonderful** sine wave:
+Plotting this **wonderful** sine wave:
 ```
 >>> tg.plot(Sin)
 ```
 ![Sinusoid function](sin.png)
 
-More examples are avaliable on _ex.py_.
+More examples are avaliable on _examples.py_.
