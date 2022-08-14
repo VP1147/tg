@@ -7,17 +7,18 @@ A teeny tiny code that plot Python functions.
 
 ## Pre-requisites
 The required Python libraries are listed below:
-	- Random
-	- Json
-	- Graphics.py
-	- Getch
-Those can be installed with PIP, for example:
+
+- Json
+- Graphics.py
+- Getch
+
+Those can be installed with PIP. For example:
 ```
 python3 -m pip install graphics.py getch
 ```
 
 ## Initializing
-Import _tg.py_. For this example, you will also need _math_.
+Import _tg.py_. For the _sin()_ function, _math_ library is also required.
 
 ```
 vp1147@debian-ideapad:~/Documentos/GitHub/teenygraph$ python3
@@ -28,16 +29,23 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> import math
 ```
 
+Select a predefined theme (_dark.json_ or _paper.json_). For instance:
+
+```
+tg.theme("dark.json")
+```
+
 Call the **init** function
 ```
->>> tg.init(1024,10,1)
+>>> tg.init(800,10,1)
 ```
 ![Empty graph](empty_graph.png)
-A graph will be created with the following values:  
-**Size (Window):** 1024x768  
-**Size (X axis):** 10 (-5 to 5)  
+An empty graph will be created with the following properties:  
+**Window size:** 	**800**x768  
+**X axis size:** 	**10** (-5 to 5)
+**Grid interval:** 	**1** 
 
-To plot a function, you have to create one first:  
+Define a function that receives a value (_x_) and returns another (_math.sin(x)_):  
 ```
 >>> def Sin(x):
 ...     return math.sin(x)
@@ -45,10 +53,10 @@ To plot a function, you have to create one first:
 >>>
 ```
 So, the graph will read:  
-**x:** x  
-**y:** math.sin(x)  
+**x:** x
+**y/f(x):** math.sin(x)  
 
-Plotting this **wonderful** sine wave:
+Then, just plot the defined function:
 ```
 >>> tg.plot(Sin)
 ```
