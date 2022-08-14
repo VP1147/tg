@@ -9,7 +9,8 @@ r = 5									# Window/Graph ratio(ratio = 10^r)
 xs = x/(2**r)							# Graph width
 g = 1									# Distance between grid lines
 
-tg.theme("dark.json")					# Select color scheme
+ tg.theme("dark.json")					# Select color scheme
+# tg.theme("paper.json")
 
 tg.Mkrs = [0]							# Choose markers (testing):
 										# Markers are defined by 
