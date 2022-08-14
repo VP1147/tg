@@ -3,45 +3,74 @@
 
 import json
 import graphics as gfx
-from random import randint
 
 # Global variables
 global Mkrs
 Mkrs = 0
 
 def theme(file):
-	global Color1 	# Background Color
-	global Color2	# Axis Color
-	global Color3	# Grid Color
-	global Color4	# Plot Color
-	theme_file = json.load(open(file))
+	global Color1 							# Background Color
+	global Color2							# Axis Color
+	global Color3							# Grid Color
+	global Color4							# Function Color
+	global Color5							# Markers Color
+
+	theme_file = json.load(open(file))		# Load the selected theme
+											# from a json file
+
+											# Theme format:
+											# {
+											# "Color1": [r,g,b],
+											# "Color2": [r,g,b],
+											# "Color3": [r,g,b],
+											# "Color4": [r,g,b],
+											# "Color5": [r,g,b]
+											# }
 	Color1 = theme_file.get("Color1")
 	Color2 = theme_file.get("Color2")
 	Color3 = theme_file.get("Color3")
 	Color4 = theme_file.get("Color4")
+	Color5 = theme_file.get("Color5")
 
 def plot(Fx):
-	r,g,b = Color4[0], Color4[1], Color4[2]
-	Count = ((Sx/2)*-1)*Factor; mc = 0
-	for i in range (1,Sx):
+	r,g,b = Color4[0], Color4[1], Color4[2] 					# Function colors
+	Count = ((Sx/2)*-1)*Factor; mc = 0 							# Counter 
+
+	for i in range (1,Sx):										# For every point
+																# in the graph
+
 		try:
-			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:
-				Actual = Fx(Count)/Factor
-				Next = Fx(Count+(1*Factor))/Factor
-				ActualCord = gfx.Point(i, ((Sy/2)-Actual))		# Starting point
-				NextCord = gfx.Point((i+1), (((Sy+1)/2)-Next)) 	# Ending point
-				line = gfx.Line(ActualCord,NextCord); 
-				line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)
-				if Mkrs != 0 and Count == Mkrs[mc]:
-					print(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
-					label = gfx.Text(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))
-					label.setFill(gfx.color_rgb(r,g,b)); label.draw(Win)
+
+			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:			# Verify if the point
+																# is inside the graph
+
+				Actual = Fx(Count)/Factor						# Start point
+				Next = Fx(Count+(1*Factor))/Factor				# End
+																
+				ActualCord = gfx.Point(i, ((Sy/2)-Actual))		# Start-End Cordinates 
+				NextCord = gfx.Point((i+1), (((Sy+1)/2)-Next)) 	
+
+				line = gfx.Line(ActualCord,NextCord); 				# Draw line from 
+				line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)	# start to end
+
+				if Mkrs != 0 and Count == Mkrs[mc]:				# Check for marker
+
+					Text = int(Count)					# Just print a integer
+														# pair on the graph
+
+					print(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))	# Draw marker
+					label = gfx.Text(ActualCord, "("+str(Text)+", "+str(Fx(Text))+")")
+					label.setFill(gfx.color_rgb(Color5[0], Color5[1], Color5[2]))
+					label.draw(Win)
 					mc+=1
+
 			else: pass
-		except ValueError: 			pass
-		except OverflowError: 		pass
-		except ZeroDivisionError: 	pass
-		except IndexError:			pass
+
+		except ValueError: 			pass				# Ignore all errors - 
+		except OverflowError: 		pass				# This prevents useless errors
+		except ZeroDivisionError: 	pass				# printed on term. Just ommit
+		except IndexError:			pass				# them from the graph
+
 		Count += Factor
 
 def init(s,xs,g): 										# s - Window size # xs - x axis size
@@ -92,7 +121,7 @@ def clear():											# Clear function
 
 # Internal functions
 
-def Id(x):				# Identity function
+def Id(x):				# Identity function -
 						# Useful for visualizing 
 						# inverse functions
 	return x
