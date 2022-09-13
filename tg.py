@@ -1,5 +1,6 @@
 # --- TeenyGraph (tg) --- By Vinícius Pavão - VP1147 --- #
-# --- Released on November 2019 --- #
+# --- 	Released on November 2019 	--- #
+# --- 		v2.0 	August 2022	  	--- #
 
 import json
 import graphics as gfx
