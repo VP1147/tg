@@ -33,8 +33,13 @@ def theme(file):
 	Color4 = theme_file.get("Color4")
 	Color5 = theme_file.get("Color5")
 
-def plot(Fx):
-	r,g,b = Color4[0], Color4[1], Color4[2] 					# Function colors
+def plot(Fx, *args):											# *args - (r_off, g_off, b_off)								
+	off = [0,0,0]												# Default offsets
+	if args: off = args[0]
+	(r,g,b) = (	int(Color4[0]+off[0]), 
+				int(Color4[1]+off[1]), 
+				int(Color4[2]+off[2]))							# Function colors and offsets
+
 	Count = ((Sx/2)*-1)*Factor; mc = 0 							# Counter 
 
 	for i in range (1,Sx):										# For every point
@@ -56,11 +61,9 @@ def plot(Fx):
 
 				if Mkrs != 0 and Count == Mkrs[mc]:				# Check for marker
 
-					Text = int(Count)					# Just print a integer
-														# pair on the graph
-
 					print(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))	# Draw marker
-					label = gfx.Text(ActualCord, "("+str(Text)+", "+str(Fx(Text))+")")
+					label = gfx.Text( ActualCord, 
+						"("+str(round(Count, 2))+", "+str(round(Fx(Count), 2))+")" )
 					label.setFill(gfx.color_rgb(Color5[0], Color5[1], Color5[2]))
 					label.draw(Win)
 					mc+=1
