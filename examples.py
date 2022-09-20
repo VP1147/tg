@@ -1,3 +1,5 @@
+## Examples on plotting simple and defined functions
+
 import math
 import random
 from getch import getch
