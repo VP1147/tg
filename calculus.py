@@ -24,11 +24,11 @@ tg.init(x,xs,g) 						# Call the init function
 def f(x):
 	return 2*x**2
 
-def df(x): 							# df/dx
-	h = 0.0001						# lim x->0 
+def df(x): 								# df/dx
+	h = 0.0001							# lim x->0 
 	a = 0.5
 	m = (f(a+h)-f(a))/h
-	return m*(x-a) + f(a)    		# y = m(x-a) + f(a)
+	return m*(x-a) + f(a)	    		# y = m(x-a) + f(a)
 
 tg.plot(f)
 tg.plot(df, [-100, 100, 0])
