@@ -26,23 +26,18 @@ def f(x):
 
 global k
 def df(x): 								# df/dx
-	h = 0.0001							# lim x->0 
-	a = k
-	return (f(a+h)-f(a))/h
-	
+	h = 0.1								# lim x->0
+	return (f(x+h)-f(x))/h
 
 def tangent(x):							# # y = m(x-a) + f(a)
-	m = df(x)
-	a = k
-	return m*(x-a) + f(a)
+	m = df(k)
+	return m*(x-k) + f(k)
 
-nint = 0.5 								# Interval between two lines
+nint = 0.1 								# Interval between two lines
 num = 10								# Number of lines (minus h-assintotes)
 tg.plot(f)
 for i in range(-int(num/2)-1, int(num/2)):
 	k = i*nint
 	tg.plot(tangent, [1, 100, 100])		# Tip: Varies the colour for each tangent line
-	#tg.clear()
-
 
 getch() 			 					# Wait for key event
