@@ -24,20 +24,15 @@ tg.init(x,xs,g) 						# Call the init function
 def f(x):
 	return x**2 -2*x
 
-global k
-def df(x): 								# df/dx
-	h = 0.1								# lim x->0
-	return (f(x+h)-f(x))/h
-
-def tangent(x):							# # y = m(x-a) + f(a)
-	m = df(k)
-	return m*(x-k) + f(k)
-
 nint = 0.1 								# Interval between two lines
-num = 10								# Number of lines (minus h-assintotes)
-tg.plot(f)
-for i in range(-int(num/2)-1, int(num/2)):
-	k = i*nint
-	tg.plot(tangent, [1, 100, 100])		# Tip: Varies the colour for each tangent line
+lnum = 10								# Assintotes to left
+rnum = 10 								# Assintotes to right
+
+tg.plot(f) 								# plot f(x)
+
+for i in range(-lnum, rnum):
+	tg.k = i*nint
+	tg.plot(tg.tangent, [1, 100, 100])		# Tip: 'i' Varies the colour 
+										# for each tangent line
 
 getch() 			 					# Wait for key event
