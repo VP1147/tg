@@ -129,3 +129,15 @@ def Id(x):				# Identity function -
 						# Useful for visualizing 
 						# inverse functions
 	return x
+
+# Calculus functions and utils
+
+global k
+
+def df(f, x): 							# Receives f(x) and x | returns df/dx
+	h = 0.1								# lim x->0
+	return (f(x+h)-f(x))/h 				# Derivative by definition
+
+def tangent(x):							# y = m(x-a) + f(a)
+	m = df(f, k)						# Derivative of x on point x = k
+	return m*(x-k) + f(k)
