@@ -5,12 +5,14 @@ A teeny tiny Python tool for graphical function plot.
 
 ## Requirements
 The required Python libraries are listed below:
+- Tkinter
 - Graphics.py
 - Getch
 
-Those can be installed with PIP. For example:
+Those can be installed with:
 ```
 python3 -m pip install graphics.py getch
+sudo apt install python3-tk
 ```
 
 ## Initializing
