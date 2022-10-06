@@ -1,11 +1,10 @@
 # Teenygraph
-A teeny tiny code that plot Python functions.
+A teeny tiny Python tool for graphical function plot.
 
 ![Multiple functions](multiple2.png)
 
 ## Requirements
 The required Python libraries are listed below:
-- Json
 - Graphics.py
 - Getch
 
