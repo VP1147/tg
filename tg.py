@@ -47,25 +47,27 @@ def plot(Fx, *args):											# *args - (r_off, g_off, b_off)
 
 		try:
 
-			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:			# Verify if the point
-																# is inside the graph
+			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:				# Verify if the point
+																	# is inside the graph
 
-				Actual = Fx(Count)/Factor						# Start point
-				Next = Fx(Count+(1*Factor))/Factor				# End
+				Actual = Fx(Count)/Factor							# Start point
+				Next = Fx(Count+(1*Factor))/Factor					# End Point
 																
-				ActualCord = gfx.Point(i, ((Sy/2)-Actual))		# Start-End Cordinates 
+				ActualCord = gfx.Point(i, ((Sy/2)-Actual))			# Start-End Cordinates 
 				NextCord = gfx.Point((i+1), (((Sy+1)/2)-Next)) 	
 
 				line = gfx.Line(ActualCord,NextCord); 				# Draw line from 
 				line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)	# start to end
 
-				if Mkrs != 0 and Count == Mkrs[mc]:				# Check for marker
+				if Mkrs != 0 and Count <= Mkrs[mc] < Count+Factor:
+					LabelCord = gfx.Point(i+60, ((Sy/2)-Actual)-15)	# Offsets for better viewing
 
-					print(ActualCord, "x: "+str(Count)+" y: "+str(Fx(Count)))	# Draw marker
-					label = gfx.Text( ActualCord, 
-						"("+str(round(Count, 2))+", "+str(round(Fx(Count), 2))+")" )
-					label.setFill(gfx.color_rgb(Color5[0], Color5[1], Color5[2]))
-					label.draw(Win)
+					label = gfx.Text(LabelCord, "x: "+str(round(Count, 2))+" y: "+str(round(Fx(Count), 2)))
+					label.setFill(gfx.color_rgb(r,g,b)); label.draw(Win)
+
+					circle = gfx.Circle(ActualCord, 4)
+					circle.setFill(gfx.color_rgb(r,g,b)); circle.draw(Win)
+					
 					mc+=1
 
 			else: pass
