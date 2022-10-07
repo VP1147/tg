@@ -70,6 +70,7 @@ def plot(Fx, *args):											# *args - (r_off, g_off, b_off)
 					
 					mc+=1
 
+				elif Mkrs != 0 and Mkrs[mc] < Count: mc +=1
 			else: pass
 
 		except ValueError: 			pass				# Ignore all errors - 
