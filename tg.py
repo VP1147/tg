@@ -9,43 +9,48 @@ import graphics as gfx
 global Mkrs
 Mkrs = 0
 
-def theme(file):
+def theme(file):							# Match global colors
+											# to theme file
+
+
 	global Color1 							# Background Color
 	global Color2							# Axis Color
 	global Color3							# Grid Color
 	global Color4							# Function Color
 	global Color5							# Markers Color
 
-	theme_file = json.load(open(file))		# Load the selected theme
-											# from a json file
+	theme_file = json.load(open(file))		# Load the selected theme file
 
-											# Theme format:
-											# {
-											# "Color1": [r,g,b],
-											# "Color2": [r,g,b],
-											# "Color3": [r,g,b],
-											# "Color4": [r,g,b],
-											# "Color5": [r,g,b]
-											# }
+											# 	{
+											# 		"Color1": [r,g,b],
+											# 		"Color2": [r,g,b],
+											# 		"Color3": [r,g,b],
+											# 		"Color4": [r,g,b],
+											# 		"Color5": [r,g,b]
+											# 	}
 	Color1 = theme_file.get("Color1")
 	Color2 = theme_file.get("Color2")
 	Color3 = theme_file.get("Color3")
 	Color4 = theme_file.get("Color4")
 	Color5 = theme_file.get("Color5")
 
-def plot(Fx, *args):											# *args - (r_off, g_off, b_off)								
-	off = [0,0,0]												# Default offsets
-	if args: off = args[0]
-	(r,g,b) = (	int(Color4[0]+off[0]), 
+def plot(Fx, *args):								# Plot a function Fx(x) on the graph
+													# *args - (r_off, g_off, b_off)
+
+	off = [0,0,0]									# Default offsets
+
+	if args: off = args[0]							# Detects if any offsets
+	(r,g,b) = (	int(Color4[0]+off[0]), 				# are declared, them sum
 				int(Color4[1]+off[1]), 
-				int(Color4[2]+off[2]))							# Function colors and offsets
+				int(Color4[2]+off[2]))
 
-	Count = ((Sx/2)*-1)*Factor; mc = 0 							# Counter 
+	Count = ((Sx/2)*-1)*Factor; mc = 0 							# Counter (-X/2 -> X/2);
+																# Marker count
 
-	for i in range (1,Sx):										# For every point
+	for i in range (1,Sx):										# Loop for every point
 																# in the graph
 
-		try:
+		try:													# Check if a point is valid
 
 			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:				# Verify if the point
 																	# is inside the graph
