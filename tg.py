@@ -140,12 +140,65 @@ def Id(x):				# Identity function -
 
 # Calculus functions and utils
 
-global k
-
 def df(f, x): 							# Receives f(x) and x | returns df/dx
-	h = 0.1								# lim x->0
-	return (f(x+h)-f(x))/h 				# Derivative by definition
+	h = 0.001							# lim x->0
+	return (f(x+h)-f(x))/h 				# Return the the function`s derivative
 
-def tangent(x):							# y = m(x-a) + f(a)
-	m = df(f, k)						# Derivative of x on point x = k
-	return m*(x-k) + f(k)
+def integ(f, a, b):				# Integral de f(x) dx no intervalo [a, b]
+	n = 1e3
+	i = 0  						# Contador de iteracoes
+	k = a
+	h = (b-a)/(3*n)				# Dividindo os subintervalos
+	S = 0						# Variavel de soma
+	while(i <= (3*n)-3):
+		try: S += f(k) + 3*f(k + h) + 3*f(k + 2*h) + f(k + 3*h)
+		except: pass
+		i += 3
+		k += 3*h
+	S = S*((3*h)/8)
+	#print("I ~= {:.12f}".format(S))
+	return S
+
+def intplot(Fx, A, B, *args):
+	off = [0,0,0]									# Default offsets
+
+	if args: off = args[0]							# Detects if any offsets
+	(r,g,b) = (	int(Color4[0]+off[0]), 				# are declared, them sum
+				int(Color4[1]+off[1]), 
+				int(Color4[2]+off[2]))
+
+	Count = ((Sx/2)*-1)*Factor									# Counter (-X/2 -> X/2);
+
+	print("Integrating from x="+str(A)+" to x="+str(B))
+	for i in range (1,Sx):										# Loop for every point
+																# in the graph
+
+		try:													# Check if a point is valid
+
+			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:				# Verify if the point
+																	# is inside the graph
+				if A < Count < B:
+
+					Actual = Fx(Count)/Factor							# Start point
+					Next = Fx(Count+(1*Factor))/Factor					# End Point
+																
+					ActualCord = gfx.Point(i, ((Sy/2)-Actual))			# Start-End Cordinates 
+					NextCord = gfx.Point((i), Sy/2)
+
+					line = gfx.Line(ActualCord, NextCord)
+					line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)
+				else: pass
+
+			else: pass
+
+		except ValueError: 			pass				# Ignore all errors - 
+		except OverflowError: 		pass				# This prevents useless errors
+		except ZeroDivisionError: 	pass				# printed on term. Just ommit
+		except IndexError:			pass				# them from the graph
+
+		Count += Factor
+
+	Area = integ(Fx, A, B); print(Area)
+	LabelCord = gfx.Point(Sx/2+((A+B)/2)/Factor, Sy/2)			# Offsets for better viewing
+	label = gfx.Text(LabelCord, "A = "+str(round(Area, 2)))
+	label.setFill(gfx.color_rgb(255,255,255)); label.draw(Win)
