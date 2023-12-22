@@ -1,6 +1,7 @@
 # --- TeenyGraph (tg) --- By Vinícius Pavão - VP1147 --- #
 # --- 	Released on November 2019 	--- #
 # --- 		v2.0 	August 2022	  	--- #
+# ---		v2.1 	December 2023	--- #
 
 import json
 import graphics as gfx
@@ -131,14 +132,14 @@ def clear():											# Clear function
 	axis(x,y)											# Draw axis (x,y)
 	Win.update()										# Send data to screen
 
-# Internal functions
+## Internal functions
 
 def Id(x):				# Identity function -
 						# Useful for visualizing 
 						# inverse functions
 	return x
 
-# Calculus functions and utils
+## Calculus functions and utils
 
 def df(f, x): 							# Receives f(x) and x | returns df/dx
 	h = 0.001							# lim x->0
@@ -163,7 +164,7 @@ def integ(f, a, b):				# Integral of f(x) dx on [a, b]
 def intplot(Fx, A, B, *args):						# Draws and calculates the
 													# integral of Fx(x) dx from
 													# A to B.
-													
+
 	# Drawing the integration area
 	off = [0,0,0]									# Default colour offsets
 
