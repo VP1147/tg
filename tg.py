@@ -144,23 +144,28 @@ def df(f, x): 							# Receives f(x) and x | returns df/dx
 	h = 0.001							# lim x->0
 	return (f(x+h)-f(x))/h 				# Return the the function`s derivative
 
-def integ(f, a, b):				# Integral de f(x) dx no intervalo [a, b]
+def integ(f, a, b):				# Integral of f(x) dx on [a, b]
+								# using the Rienmann method of
+								# integration on 1000 subdivisions.
 	n = 1e3
-	i = 0  						# Contador de iteracoes
+	i = 0
 	k = a
-	h = (b-a)/(3*n)				# Dividindo os subintervalos
-	S = 0						# Variavel de soma
+	h = (b-a)/(3*n)				# Subintervals
+	S = 0						# Sum
 	while(i <= (3*n)-3):
 		try: S += f(k) + 3*f(k + h) + 3*f(k + 2*h) + f(k + 3*h)
 		except: pass
 		i += 3
 		k += 3*h
 	S = S*((3*h)/8)
-	#print("I ~= {:.12f}".format(S))
 	return S
 
-def intplot(Fx, A, B, *args):
-	off = [0,0,0]									# Default offsets
+def intplot(Fx, A, B, *args):						# Draws and calculates the
+													# integral of Fx(x) dx from
+													# A to B.
+													
+	# Drawing the integration area
+	off = [0,0,0]									# Default colour offsets
 
 	if args: off = args[0]							# Detects if any offsets
 	(r,g,b) = (	int(Color4[0]+off[0]), 				# are declared, them sum
@@ -177,14 +182,14 @@ def intplot(Fx, A, B, *args):
 
 			if Sx*-1 < (Sx/2)-Fx(Count)/Factor < Sx:				# Verify if the point
 																	# is inside the graph
-				if A < Count < B:
+				if A < Count < B:									# Verify if the point
+																	# is inside [a, b]
 
-					Actual = Fx(Count)/Factor							# Start point
-					Next = Fx(Count+(1*Factor))/Factor					# End Point
-																
+					Actual = Fx(Count)/Factor							# Start point															
 					ActualCord = gfx.Point(i, ((Sy/2)-Actual))			# Start-End Cordinates 
 					NextCord = gfx.Point((i), Sy/2)
 
+					# Draws a line from the coordinate to the X axis
 					line = gfx.Line(ActualCord, NextCord)
 					line.setFill(gfx.color_rgb(r,g,b)); line.draw(Win)
 				else: pass
@@ -198,7 +203,9 @@ def intplot(Fx, A, B, *args):
 
 		Count += Factor
 
+	# Calculates the integral using the integ() function
 	Area = integ(Fx, A, B); print(Area)
-	LabelCord = gfx.Point(Sx/2+((A+B)/2)/Factor, Sy/2)			# Offsets for better viewing
-	label = gfx.Text(LabelCord, "A = "+str(round(Area, 2)))
+																# Places the result of the
+	LabelCord = gfx.Point(Sx/2+((A+B)/2)/Factor, Sy/2)			# integ() function on the
+	label = gfx.Text(LabelCord, "A = "+str(round(Area, 2)))		# graph.
 	label.setFill(gfx.color_rgb(255,255,255)); label.draw(Win)
