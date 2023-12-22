@@ -27,11 +27,12 @@ tg.init(x,xs,g) 						# Call the init function
 def f(x):
 	return x**2 + x
 
-a = 0									# Assintotes to left
-b = 1 								# Assintotes to right
+a = -1									# Assintotes to left
+b = 1 									# Assintotes to right
 
 tg.plot(f) 								# plot f(x)
 
-tg.intplot(f, a, b)
+tg.intplot(f, a, b)						# Integral of f(x) dx from
+										# a to b
 
 getch() 
