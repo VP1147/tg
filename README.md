@@ -1,7 +1,7 @@
 # Teenygraph
 A teeny tiny interative function plotter written in Python3 focused on simplicity and customisation.
 
-<img src="multiple2.png" alt="Some functions plotted" width="500"/> <img src="image.png" alt="Derivative example" width="500"/>
+<img src="multiple2.png" alt="Some functions plotted" width="300"/> <img src="image.png" alt="Derivative example" width="300"/>
 
 ## Requirements
 The required Python libraries are listed below:
