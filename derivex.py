@@ -8,7 +8,7 @@ from getch import getch
 import tg
 
 x = 1024								# Window width
-r = 5									# Window/Graph ratio(ratio = 10^r)
+r = 8									# Window/Graph ratio(ratio = 10^r)
 xs = x/(2**r)							# Graph width
 g = 1									# Distance between grid lines
 
