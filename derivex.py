@@ -33,6 +33,7 @@ step = 0.1
 tg.plot(f) 								# plot f(x)
 
 global a
+
 def tangent(x):							# Draws the derivative function
 										# of f(x): y = m(x-a) + f(a)
 	m = tg.df(f, a)						# Derivative of f on point x
