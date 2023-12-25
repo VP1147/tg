@@ -146,8 +146,8 @@ def df(f, x): 							# Receives f(x) and x | returns df/dx
 	return (f(x+h)-f(x))/h 				# Return the the function`s derivative
 
 def integ(f, a, b):				# Integral of f(x) dx on [a, b]
-								# using the Rienmann method of
-								# integration on 1000 subdivisions.
+								# using the Simpson 3/8 method of
+								# numeric integration
 	n = 1e3
 	i = 0
 	k = a
@@ -208,5 +208,5 @@ def intplot(Fx, A, B, *args):						# Draws and calculates the
 	Area = integ(Fx, A, B); print(Area)
 																# Places the result of the
 	LabelCord = gfx.Point(Sx/2+((A+B)/2)/Factor, Sy/2)			# integ() function on the
-	label = gfx.Text(LabelCord, "A = "+str(round(Area, 2)))		# graph.
+	label = gfx.Text(LabelCord, str(round(Area, 3)))			# graph.
 	label.setFill(gfx.color_rgb(255,255,255)); label.draw(Win)
