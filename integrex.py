@@ -25,7 +25,7 @@ tg.init(x,xs,g) 						# Call the init function
 
 										# Function: f(x) = x² + x
 def f(x):
-	return x**2 + x
+	return m.e**(x**2)
 
 a = -1									# Assintotes to left
 b = 1 									# Assintotes to right
