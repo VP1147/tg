@@ -2,37 +2,33 @@
 ## A simple example involving integration using
 ## the functions of tg.py
 
-
 import math as m
 from getch import getch
 
 import tg
 
 x = 1024								# Window width
-r = 7									# Window/Graph ratio(ratio = 10^r)
+r = 7									# Window/Graph ratio (ratio = 2^r)
 xs = x/(2**r)							# Graph width
-g = 1									# Distance between grid lines
-
-#tg.Mkrs = [0.5]
-
+g = 1									# Distance between grid lines (units)
 
 tg.theme("dark.json")					# Select color scheme
 
 tg.init(x,xs,g) 						# Call the init function
 										# with the given paramenters
 
-## Derivates
-
-										# Function: f(x) = x² + x
+										# Function: f(x) = e^(x^2)
 def f(x):
 	return m.e**(x**2)
 
-a = -1									# Assintotes to left
-b = 1 									# Assintotes to right
+a = -1									# Integrate f(x) dx from a to b
+b = 1
 
-tg.plot(f) 								# plot f(x)
+tg.Mkrs = [a, b]						# Setting a and b as optional markers
+tg.plot(f) 								# Plotting the function f(x)
 
-tg.intplot(f, a, b)						# Integral of f(x) dx from
-										# a to b
+tg.intplot(f, a, b)						# Plotting the integral of f(x) dx from
+										# a to b. Also displays the numeric result
+										# of the integration.
 
-getch() 
+getch() 								# Wait for keystroke
