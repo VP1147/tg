@@ -17,9 +17,9 @@ tg.theme("dark.json")					# Select color scheme
 tg.init(x,xs,g) 						# Call the init function
 										# with the given paramenters
 
-										# Function: f(x) = e^(x^2)
+										# Function: f(x) = sin(x²)
 def f(x):
-	return m.e**(x**2)
+	return m.sin(x**2)
 
 a = -1									# Integrate f(x) dx from a to b
 b = 1
